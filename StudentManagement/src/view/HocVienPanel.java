@@ -42,7 +42,9 @@ public class HocVienPanel extends javax.swing.JPanel {
         jbtnAdd.setBackground(new java.awt.Color(1, 152, 117));
         jbtnAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnAdd.setText("+ Thêm mới");
+        jbtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_18p.png"))); // NOI18N
+        jbtnAdd.setText("Thêm mới");
+        jbtnAdd.setToolTipText("");
         jbtnAdd.setBorder(null);
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -66,8 +68,8 @@ public class HocVienPanel extends javax.swing.JPanel {
                     .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpnRootLayout.createSequentialGroup()
                         .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE)
-                        .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                        .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpnRootLayout.setVerticalGroup(

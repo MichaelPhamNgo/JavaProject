@@ -6,9 +6,11 @@
 package controller;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ import model.HocVien;
 import service.HocVienService;
 import service.HocVienServiceImpl;
 import utility.ClassTableModel;
+import view.HocVienJFrame;
 
 /**
  *
@@ -96,6 +99,36 @@ public class QuanLyHocVienController {
         table.getColumnModel().getColumn(1).setMinWidth(80);
         table.getColumnModel().getColumn(1).setMaxWidth(80);
         table.getColumnModel().getColumn(1).setPreferredWidth(80);
+        
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                   if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                          DefaultTableModel model = (DefaultTableModel) table.getModel();
+                          int selectedRowIndex = table.getSelectedRow();
+
+                          selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+
+                          HocVien hocVien = new HocVien();
+                          hocVien.setMa_hoc_vien((int) model.getValueAt(selectedRowIndex, 0));
+                          hocVien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
+                          hocVien.setNgay_sinh((Date)model.getValueAt(selectedRowIndex, 3));
+                          hocVien.setGioi_tinh(model.getValueAt(selectedRowIndex, 4).toString().equalsIgnoreCase("Nam"));
+                          hocVien.setSo_dien_thoai(model.getValueAt(selectedRowIndex, 5) != null
+                                  ? model.getValueAt(selectedRowIndex, 5).toString() : null);
+                          hocVien.setDia_chi(model.getValueAt(selectedRowIndex, 6) != null
+                                  ? model.getValueAt(selectedRowIndex, 6).toString() : null);
+                          hocVien.setTinh_trang((boolean) model.getValueAt(selectedRowIndex, 7));
+
+                          HocVienJFrame frame = new HocVienJFrame(hocVien);
+                          frame.setLocationRelativeTo(null);
+                          frame.setResizable(false);
+                          frame.setTitle("Thông tin học viên");
+                          frame.setVisible(true);
+                   }
+            }
+
+        });
         
         // design
         table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
