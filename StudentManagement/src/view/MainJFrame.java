@@ -16,12 +16,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author micha
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Test
      */
-    public MainFrame() {
+    public MainJFrame() {
         initComponents();
         setTitle("QUẢN LÝ HỌC VIÊN");
         

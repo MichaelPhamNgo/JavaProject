@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-import java.util.List;
-import model.HocVien;
+package controller;
+
 /**
  *
  * @author micha
  */
-public interface HocVienDAO {
-    public List<HocVien> getList();    
-    public int createOrUpdate(HocVien hocVien);
+public class XuatBaoCaoController {
+    
 }

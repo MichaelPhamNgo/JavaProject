@@ -95,7 +95,7 @@ public class HocVienController {
                             int lastId = hocVienService.createOrUpdate(hocVien);
                             if (lastId != 0) {
                                 hocVien.setMa_hoc_vien(lastId);
-                                jtfMaHocVien.setText("#" + hocVien.getMa_hoc_vien());
+                                jtfMaHocVien.setText("#" + lastId);
                                 jlbMsg.setText("Xử lý cập nhật dữ liệu thành công!");
                             } else {
                                 jlbMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");

@@ -6,12 +6,18 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,6 +30,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.HocVien;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.HocVienService;
 import service.HocVienServiceImpl;
 import utility.ClassTableModel;
@@ -36,6 +47,7 @@ import view.HocVienJFrame;
 public class QuanLyHocVienController {
     private final JPanel jpnView;
     private final JButton jbtnAdd;
+    private final JButton jbtnPrint;
     private final JTextField jtfSearch;
  
     private ClassTableModel classTableModel = null;
@@ -47,13 +59,12 @@ public class QuanLyHocVienController {
  
     private TableRowSorter<TableModel> rowSorter = null;
  
-    public QuanLyHocVienController(JPanel jpnView, JButton jbtnAdd, JTextField jtfSearch) {
+    public QuanLyHocVienController(JPanel jpnView, JButton jbtnAdd, JTextField jtfSearch, JButton jbtnPrint) {
         this.jpnView = jpnView;
         this.jbtnAdd = jbtnAdd;
         this.jtfSearch = jtfSearch;
- 
-        this.classTableModel = new ClassTableModel();
- 
+        this.jbtnPrint = jbtnPrint;
+        this.classTableModel = new ClassTableModel(); 
         this.hocVienService = new HocVienServiceImpl();
     }
  
@@ -145,5 +156,105 @@ public class QuanLyHocVienController {
         jpnView.add(scroll);
         jpnView.validate();
         jpnView.repaint();
+    }
+    
+    public void setEvent() {
+        jbtnAdd.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                HocVienJFrame frame = new HocVienJFrame(new HocVien());
+                frame.setTitle("Thông tin học viên");
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                frame.setVisible(true);
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jbtnAdd.setBackground(new Color(52,73,94));
+            }
+ 
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jbtnAdd.setBackground(new Color(52,73,94));
+            }
+        });
+        
+        jbtnPrint.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet spreadsheet = workbook.createSheet("Học viên");
+                
+                XSSFRow row = null;
+                Cell cell = null;
+
+                row = spreadsheet.createRow(3);
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue("STT");
+                
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue("Họ và tên");
+                
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue("Ngày sinh");
+                
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue("Giới tính");
+                
+                cell = row.createCell(4, CellType.STRING);
+                cell.setCellValue("Số điện thoại");
+                
+                cell = row.createCell(5, CellType.STRING);
+                cell.setCellValue("Địa chỉ");
+                
+                List<HocVien> listItem = hocVienService.getList();
+                if(listItem != null) {
+                    try {
+                        int s = listItem.size();
+                        for (int i = 0; i < s; i++) {
+                            HocVien hocVien = listItem.get(i);
+                            
+                            row = spreadsheet.createRow(4 + i);
+                            
+                            cell = row.createCell(0, CellType.NUMERIC);
+                            cell.setCellValue(i + 1);
+                            
+                            cell = row.createCell(1, CellType.STRING);
+                            cell.setCellValue(hocVien.getHo_ten());
+                            
+                            cell = row.createCell(2, CellType.STRING);
+                            cell.setCellValue(hocVien.getNgay_sinh().toString());
+                            
+                            cell = row.createCell(3, CellType.STRING);
+                            cell.setCellValue(hocVien.isGioi_tinh() ? "Nam" : "Nữ");
+                            
+                            cell = row.createCell(4, CellType.STRING);
+                            cell.setCellValue(hocVien.getSo_dien_thoai());
+                            
+                            cell = row.createCell(5, CellType.STRING);
+                            cell.setCellValue(hocVien.getDia_chi());
+                            
+                            
+                        }
+                        FileOutputStream out = new FileOutputStream(new File("C:/Users/micha/Documents/hv.xlsx"));
+                        workbook.write(out);
+                        out.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(QuanLyHocVienController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jbtnPrint.setBackground(new Color(52,73,94));
+            }
+ 
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jbtnPrint.setBackground(new Color(52,73,94));
+            }
+        });
     }
 }

@@ -19,8 +19,9 @@ public class HocVienPanel extends javax.swing.JPanel {
     public HocVienPanel() {
         initComponents();
         QuanLyHocVienController controller = new QuanLyHocVienController(
-                jpnView, jbtnAdd, jtfSearch);
+                jpnView, jbtnAdd, jtfSearch, jbtnPrint);
         controller.setDataToTable();
+        controller.setEvent();
     }
 
     /**
@@ -36,6 +37,7 @@ public class HocVienPanel extends javax.swing.JPanel {
         jtfSearch = new javax.swing.JTextField();
         jbtnAdd = new javax.swing.JButton();
         jpnView = new javax.swing.JPanel();
+        jbtnPrint = new javax.swing.JButton();
 
         jtfSearch.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -58,6 +60,11 @@ public class HocVienPanel extends javax.swing.JPanel {
             .addGap(0, 355, Short.MAX_VALUE)
         );
 
+        jbtnPrint.setBackground(new java.awt.Color(1, 152, 117));
+        jbtnPrint.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnPrint.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnPrint.setText("Xuất báo cáo");
+
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
         jpnRoot.setLayout(jpnRootLayout);
         jpnRootLayout.setHorizontalGroup(
@@ -68,17 +75,24 @@ public class HocVienPanel extends javax.swing.JPanel {
                     .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpnRootLayout.createSequentialGroup()
                         .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                        .addComponent(jbtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnRootLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnRootLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnRootLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jbtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
@@ -99,6 +113,7 @@ public class HocVienPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnAdd;
+    private javax.swing.JButton jbtnPrint;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnView;
     private javax.swing.JTextField jtfSearch;

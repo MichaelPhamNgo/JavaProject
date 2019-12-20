@@ -91,7 +91,6 @@ public class HocVienJFrame extends javax.swing.JFrame {
 
         jtfHoTen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfHoTen.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jtfHoTen.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

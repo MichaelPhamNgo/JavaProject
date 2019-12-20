@@ -64,6 +64,7 @@ public class HocVien implements Serializable {
     public void setSo_dien_thoai(String so_dien_thoai) {
         this.so_dien_thoai = so_dien_thoai;
     }
+    
 
     public void setTinh_trang(boolean tinh_trang) {
         this.tinh_trang = tinh_trang;

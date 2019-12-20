@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package dao;
-import java.util.List;
-import model.HocVien;
+
+import model.TaiKhoan;
+
 /**
  *
  * @author micha
  */
-public interface HocVienDAO {
-    public List<HocVien> getList();    
-    public int createOrUpdate(HocVien hocVien);
+public interface TaiKhoanDAO {
+    public TaiKhoan login(String tenDangNhap, String matKhau);
 }

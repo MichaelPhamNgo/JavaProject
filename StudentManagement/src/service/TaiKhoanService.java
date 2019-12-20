@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package service;
+
+import model.TaiKhoan;
 
 /**
  *
  * @author micha
  */
-class JDateChooser {
-    
+public interface TaiKhoanService {
+    public TaiKhoan login(String tenDangNhap, String matKhau);
 }
