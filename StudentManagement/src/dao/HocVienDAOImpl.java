@@ -72,9 +72,4 @@ public class HocVienDAOImpl implements HocVienDAO{
         }
         return 0;
     }
-    
-    public static void main(String[] args) {
-        HocVienDAO hocvien = new HocVienDAOImpl() {};
-        System.out.println(hocvien.getList());
-    }
 }

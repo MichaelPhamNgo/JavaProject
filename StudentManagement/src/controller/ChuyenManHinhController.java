@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import view.HocVienPanel;
+import view.ThongKePanel;
 import view.TrangChuPanel;
 
 /**
@@ -69,6 +70,9 @@ public class ChuyenManHinhController {
                     break;
                 case "HocVien":
                     node = new HocVienPanel();
+                    break;
+                case "ThongKe":
+                    node = new ThongKePanel();
                     break;
                 // more
                 default:

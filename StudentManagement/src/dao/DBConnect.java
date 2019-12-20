@@ -25,10 +25,4 @@ public class DBConnect {
         }
         return cons;
     }
- 
-    public static void main(String[] args) throws SQLException {
-        Connection conn = getConnection();
-        System.out.println(conn.toString());
-        conn.close();
-    }
 }
